@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+// Bulma
+@import "node_modules/bulma/sass/utilities/_all";
+@import "node_modules/bulma/sass/base/_all";
+@import "node_modules/bulma/sass/elements/_all";
+@import "node_modules/bulma/sass/components/_all";
+@import "node_modules/bulma/sass/grid/_all";
+@import "node_modules/bulma/sass/layout/_all";
+
+// Font Awesome
+$fa-font-path: "/fonts/font-awesome";
+@import "node_modules/font-awesome/scss/font-awesome";
+
+// App
+@import "main";

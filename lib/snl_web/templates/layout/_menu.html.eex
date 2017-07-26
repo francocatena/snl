@@ -1,0 +1,32 @@
+<div class="container">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <%= link to: "/", class: "navbar-item" do %>
+        <span class="icon">
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </span>
+      <% end %>
+
+      <div class="navbar-burger" data-target="main-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="main-menu" class="navbar-menu">
+      <div class="navbar-start">
+        <%= link to: user_path(@conn, :index), class: "navbar-item" do %>
+          <%= gettext("Users") %>
+        <% end %>
+      </div>
+      <div class="navbar-end">
+        <%= link to: "#", class: "navbar-item" do %>
+          <span class="icon">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+</div>

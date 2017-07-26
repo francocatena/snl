@@ -1,0 +1,51 @@
+<section class="section">
+  <div class="container">
+    <h2 class="title">
+      <%= gettext "Users" %>
+    </h2>
+
+    <table class="table is-striped is-narrow">
+      <thead>
+        <tr>
+          <th><%= gettext "Name" %></th>
+          <th><%= gettext "Lastname" %></th>
+          <th class="is-hidden-mobile"><%= gettext "Email" %></th>
+
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for user <- @users do %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.lastname %></td>
+            <td class="is-hidden-mobile"><%= user.email %></td>
+
+            <td class="has-text-right">
+              <span>
+                <%= link gettext("Show"), to: user_path(@conn, :show, user), class: "button is-small" %>
+              </span>
+              <span>
+                <%= link gettext("Edit"), to: user_path(@conn, :edit, user), class: "button is-small" %>
+              </span>
+              <span>
+                <%= link gettext("Delete"), to:     user_path(@conn, :delete, user),
+                                            method: :delete,
+                                            data:   [confirm: gettext("Are you sure?")],
+                                            class:  "button is-small is-danger" %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      <span><%= link gettext("New user"), to: user_path(@conn, :new) %></span>
+    </p>
+  </div>
+</footer>

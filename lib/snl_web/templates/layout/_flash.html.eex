@@ -1,0 +1,6 @@
+<section class="section">
+  <div class="container">
+    <p class="notification is-info"><%= get_flash(@conn, :info) %></p>
+    <p class="notification is-danger"><%= get_flash(@conn, :error) %></p>
+  </div>
+</section>
