@@ -6,7 +6,7 @@ defmodule Snl.Accounts do
   import Ecto.Query, warn: false
   alias Snl.Repo
 
-  alias Snl.Accounts.User
+  alias Snl.Accounts.{Auth, User}
 
   @doc """
   Returns the list of users.
@@ -51,7 +51,7 @@ defmodule Snl.Accounts do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.changeset(attrs)
+    |> User.create_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -100,5 +100,21 @@ defmodule Snl.Accounts do
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
+  end
+
+  @doc """
+  Authenticates a user.
+
+  ## Examples
+
+    iex> authenticate_by_email_and_password("john@doe.com", "123")
+    {:ok, %User{}}
+
+    iex> authenticate_by_email_and_password("john@doe.com", "wrong")
+    {:error, :unauthorized}
+
+  """
+  def authenticate_by_email_and_password(email, password) do
+    Auth.authenticate_by_email_and_password(email, password)
   end
 end
