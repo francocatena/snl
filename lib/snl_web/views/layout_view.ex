@@ -14,13 +14,8 @@ defmodule SnlWeb.LayoutView do
     end
   end
 
-  def flash_class(type) do
-    if type == "info" do
-      "is-info"
-    else
-      "is-danger"
-    end
-  end
+  def flash_class("info"),  do: "is-info"
+  def flash_class("error"), do: "is-danger"
 
   defp get_flash_message(conn) do
     conn
