@@ -56,15 +56,15 @@
   },
 
   "config/*.exs": {
-    "type": "config"
+    "type": "environment"
   },
 
   "lib/snl.ex": {
-    "type": "context"
+    "type": "app"
   },
 
   "lib/snl/*": {
-    "type": "context"
+    "type": "app"
   },
 
   "lib/snl_web.ex": {
@@ -75,7 +75,15 @@
     "type": "web"
   },
 
+  "priv/repo/seeds.exs": {
+    "type": "seed"
+  },
+
   "priv/repo/migrations/*.exs": {
     "type": "migration"
+  },
+
+  "mix.exs": {
+    "type": "mix"
   }
 }
