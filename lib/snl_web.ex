@@ -23,6 +23,7 @@ defmodule SnlWeb do
       import Plug.Conn
       import SnlWeb.Router.Helpers
       import SnlWeb.Gettext
+      import SnlWeb.SessionPlug, only: [authenticate: 2]
     end
   end
 
@@ -48,6 +49,8 @@ defmodule SnlWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import SnlWeb.SessionPlug, only: [fetch_current_user: 2]
+      import SnlWeb.CacheControlPlug, only: [put_cache_control_headers: 2]
     end
   end
 

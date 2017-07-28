@@ -1,7 +1,7 @@
 <div class="container">
   <nav class="navbar">
     <div class="navbar-brand">
-      <%= link to: "/", class: "navbar-item" do %>
+      <%= link to: root_path(@conn, :index), class: "navbar-item" do %>
         <span class="icon">
           <i class="fa fa-home" aria-hidden="true"></i>
         </span>
@@ -21,11 +21,22 @@
         <% end %>
       </div>
       <div class="navbar-end">
-        <%= link to: "#", class: "navbar-item" do %>
-          <span class="icon">
-            <i class="fa fa-user-circle" aria-hidden="true"></i>
-          </span>
-        <% end %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">
+            <span class="icon">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div id="user-dropdown" class="navbar-dropdown">
+            <%= link to: session_path(@conn, :delete), method: :delete, class: "navbar-item" do %>
+              <%= gettext("Logout") %>
+              <span class="icon">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+              </span>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </nav>

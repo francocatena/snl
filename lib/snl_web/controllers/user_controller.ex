@@ -4,6 +4,8 @@ defmodule SnlWeb.UserController do
   alias Snl.Accounts
   alias Snl.Accounts.User
 
+  plug :authenticate
+
   def index(conn, _params) do
     users = Accounts.list_users()
     render(conn, "index.html", users: users)

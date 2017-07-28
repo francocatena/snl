@@ -3,9 +3,9 @@ defmodule SnlWeb.UserControllerTest do
 
   alias Snl.Accounts
 
-  @create_attrs %{email: "some email", lastname: "some lastname", name: "some name"}
+  @create_attrs %{email: "some email", lastname: "some lastname", name: "some name", password: "123456"}
   @update_attrs %{email: "some updated email", lastname: "some updated lastname", name: "some updated name"}
-  @invalid_attrs %{email: nil, lastname: nil, name: nil}
+  @invalid_attrs %{email: nil, lastname: nil, name: nil, password: "123"}
 
   def fixture(:user) do
     {:ok, user} = Accounts.create_user(@create_attrs)
