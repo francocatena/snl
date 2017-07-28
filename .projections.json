@@ -14,19 +14,29 @@
     "alternate": "test/views/{}_view_test.exs"
   },
 
+  "lib/snl_web/plugs/*_plug.ex": {
+    "type": "plug",
+    "alternate": "test/plugs/{}_plug_test.exs"
+  },
+
   "test/channels/*_channel_test.exs": {
     "type": "tchannel",
-    "alternate": "lib/snl_web/channels/{}_channel.ex"
+    "alternate": "lib/snl_web/channels/{}_channel_test.ex"
   },
 
   "test/controllers/*_controller_test.exs": {
     "type": "tcontroller",
-    "alternate": "lib/snl_web/controllers/{}_controller.ex"
+    "alternate": "lib/snl_web/controllers/{}_controller_test.ex"
   },
 
   "test/views/*_view_test.exs": {
     "type": "tview",
-    "alternate": "lib/snl_web/views/{}_view.ex"
+    "alternate": "lib/snl_web/views/{}_view_test.ex"
+  },
+
+  "test/plugs/*_plug_test.exs": {
+    "type": "tplug",
+    "alternate": "lib/snl_web/plugs/{}_plug_test.ex"
   },
 
   "lib/snl_web/templates/*.eex": {
@@ -49,8 +59,20 @@
     "type": "config"
   },
 
-  "lib/*": {
-    "type": "lib"
+  "lib/snl.ex": {
+    "type": "context"
+  },
+
+  "lib/snl/*": {
+    "type": "context"
+  },
+
+  "lib/snl_web.ex": {
+    "type": "web"
+  },
+
+  "lib/snl_web/*": {
+    "type": "web"
   },
 
   "priv/repo/migrations/*.exs": {
