@@ -1,42 +1,42 @@
 {
   "lib/snl_web/channels/*_channel.ex": {
     "type": "channel",
-    "alternate": "test/channels/{}_channel_test.exs"
+    "alternate": "test/snl_web/channels/{}_channel_test.exs"
   },
 
   "lib/snl_web/controllers/*_controller.ex": {
     "type": "controller",
-    "alternate": "test/controllers/{}_controller_test.exs"
+    "alternate": "test/snl_web/controllers/{}_controller_test.exs"
   },
 
   "lib/snl_web/views/*_view.ex": {
     "type": "view",
-    "alternate": "test/views/{}_view_test.exs"
+    "alternate": "test/snl_web/views/{}_view_test.exs"
   },
 
   "lib/snl_web/plugs/*_plug.ex": {
     "type": "plug",
-    "alternate": "test/plugs/{}_plug_test.exs"
+    "alternate": "test/snl_web/plugs/{}_plug_test.exs"
   },
 
-  "test/channels/*_channel_test.exs": {
+  "test/snl_web/channels/*_channel_test.exs": {
     "type": "tchannel",
-    "alternate": "lib/snl_web/channels/{}_channel_test.ex"
+    "alternate": "lib/snl_web/channels/{}_channel.ex"
   },
 
-  "test/controllers/*_controller_test.exs": {
+  "test/snl_web/controllers/*_controller_test.exs": {
     "type": "tcontroller",
-    "alternate": "lib/snl_web/controllers/{}_controller_test.ex"
+    "alternate": "lib/snl_web/controllers/{}_controller.ex"
   },
 
-  "test/views/*_view_test.exs": {
+  "test/snl_web/views/*_view_test.exs": {
     "type": "tview",
-    "alternate": "lib/snl_web/views/{}_view_test.ex"
+    "alternate": "lib/snl_web/views/{}_view.ex"
   },
 
-  "test/plugs/*_plug_test.exs": {
+  "test/snl_web/plugs/*_plug_test.exs": {
     "type": "tplug",
-    "alternate": "lib/snl_web/plugs/{}_plug_test.ex"
+    "alternate": "lib/snl_web/plugs/{}_plug.ex"
   },
 
   "lib/snl_web/templates/*.eex": {
