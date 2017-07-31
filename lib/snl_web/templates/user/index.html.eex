@@ -4,7 +4,7 @@
       <%= gettext "Users" %>
     </h2>
 
-    <table class="table is-striped is-narrow">
+    <table class="table is-striped is-narrow is-fullwidth">
       <thead>
         <tr>
           <th><%= gettext "Name" %></th>
