@@ -39,6 +39,10 @@
     "alternate": "lib/snl_web/plugs/{}_plug.ex"
   },
 
+  "test/support/*.ex": {
+    "type": "tsupport"
+  },
+
   "lib/snl_web/templates/*.eex": {
     "type": "template"
   },
