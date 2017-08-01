@@ -1,12 +1,14 @@
 defmodule SnlWeb.SessionController do
   use SnlWeb, :controller
 
-  def new(%{assigns: %{current_user: nil}} = conn, _params) do
-    render(conn, "new.html")
+  plug :authenticate when action in [:delete]
+
+  def new(%{assigns: %{current_user: user}} = conn, _params) when not is_nil(user) do
+    redirect(conn, to: user_path(conn, :index))
   end
 
-  def new(%{assigns: %{current_user: _}} = conn, _params) do
-    redirect(conn, to: user_path(conn, :index))
+  def new(conn, _params) do
+    render(conn, "new.html")
   end
 
   def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
