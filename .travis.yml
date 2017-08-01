@@ -1,0 +1,7 @@
+language: elixir
+sudo: false
+dist: trusty
+elixir:
+  - 1.5
+otp_release:
+  - 20.0
