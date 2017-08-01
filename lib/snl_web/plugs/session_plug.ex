@@ -6,6 +6,10 @@ defmodule SnlWeb.SessionPlug do
   alias Snl.Accounts
   alias SnlWeb.Router.Helpers
 
+  def fetch_current_user(%{assigns: %{current_user: user}} = conn, _opts)
+  when not is_nil(user),
+    do: conn
+
   def fetch_current_user(conn, _opts) do
     user_id = get_session(conn, :user_id)
     user    = user_id && Accounts.get_user!(user_id)
@@ -13,14 +17,14 @@ defmodule SnlWeb.SessionPlug do
     assign(conn, :current_user, user)
   end
 
+  def authenticate(%{assigns: %{current_user: user}} = conn, _opts)
+  when not is_nil(user),
+    do: conn
+
   def authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error, gettext("You must be logged in."))
-      |> redirect(to: Helpers.session_path(conn, :new))
-      |> halt()
-    end
+    conn
+    |> put_flash(:error, gettext("You must be logged in."))
+    |> redirect(to: Helpers.session_path(conn, :new))
+    |> halt()
   end
 end
