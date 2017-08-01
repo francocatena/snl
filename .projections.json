@@ -39,6 +39,11 @@
     "alternate": "lib/snl_web/plugs/{}_plug.ex"
   },
 
+  "test/snl/*_test.exs": {
+    "type": "tapp",
+    "alternate": "lib/snl/{}.ex"
+  },
+
   "test/support/*.ex": {
     "type": "tsupport"
   },
@@ -67,8 +72,9 @@
     "type": "app"
   },
 
-  "lib/snl/*": {
-    "type": "app"
+  "lib/snl/*.ex": {
+    "type": "app",
+    "alternate": "test/snl/{}_test.exs"
   },
 
   "lib/snl_web.ex": {

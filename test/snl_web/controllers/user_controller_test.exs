@@ -3,86 +3,126 @@ defmodule SnlWeb.UserControllerTest do
 
   alias Snl.Accounts
 
-  @create_attrs %{email: "some email", lastname: "some lastname", name: "some name", password: "123456"}
-  @update_attrs %{email: "some updated email", lastname: "some updated lastname", name: "some updated name"}
-  @invalid_attrs %{email: nil, lastname: nil, name: nil, password: "123"}
+  @create_attrs  %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
+  @update_attrs  %{email: "new@email.com", lastname: "some updated lastname", name: "some updated name"}
+  @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123"}
 
-  def fixture(:user) do
-    {:ok, user} = Accounts.create_user(@create_attrs)
-    user
+  setup %{conn: conn} = config do
+    do_setup conn, config[:login_as]
+  end
+
+  describe "unauthorized access" do
+    test "requires user authentication on all actions", %{conn: conn} do
+      Enum.each([
+        get(conn,    user_path(conn, :index)),
+        get(conn,    user_path(conn, :new)),
+        post(conn,   user_path(conn, :create, %{})),
+        get(conn,    user_path(conn, :show, "123")),
+        get(conn,    user_path(conn, :edit, "123")),
+        put(conn,    user_path(conn, :update, "123", %{})),
+        delete(conn, user_path(conn, :delete, "123"))
+      ], fn conn ->
+        assert html_response(conn, 302)
+        assert conn.halted
+      end)
+    end
   end
 
   describe "index" do
+    @tag login_as: "test@user.com"
     test "lists all users", %{conn: conn} do
       conn = get conn, user_path(conn, :index)
-      assert html_response(conn, 200) =~ "Listing Users"
+
+      assert html_response(conn, 200) =~ ~r/Users/
     end
   end
 
   describe "new user" do
+    @tag login_as: "test@user.com"
     test "renders form", %{conn: conn} do
       conn = get conn, user_path(conn, :new)
-      assert html_response(conn, 200) =~ "New User"
+
+      assert html_response(conn, 200) =~ ~r/New user/
     end
   end
 
   describe "create user" do
+    @tag login_as: "test@user.com"
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post conn, user_path(conn, :create), user: @create_attrs
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == user_path(conn, :show, id)
-
-      conn = get conn, user_path(conn, :show, id)
-      assert html_response(conn, 200) =~ "Show User"
     end
 
+    @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post conn, user_path(conn, :create), user: @invalid_attrs
-      assert html_response(conn, 200) =~ "New User"
+
+      assert html_response(conn, 200)
     end
   end
 
   describe "edit user" do
     setup [:create_user]
 
+    @tag login_as: "test@user.com"
     test "renders form for editing chosen user", %{conn: conn, user: user} do
       conn = get conn, user_path(conn, :edit, user)
-      assert html_response(conn, 200) =~ "Edit User"
+
+      assert html_response(conn, 200) =~ ~r/#{user.email}/
     end
   end
 
   describe "update user" do
     setup [:create_user]
 
+    @tag login_as: "test@user.com"
     test "redirects when data is valid", %{conn: conn, user: user} do
       conn = put conn, user_path(conn, :update, user), user: @update_attrs
-      assert redirected_to(conn) == user_path(conn, :show, user)
 
-      conn = get conn, user_path(conn, :show, user)
-      assert html_response(conn, 200) =~ "some updated email"
+      assert redirected_to(conn) == user_path(conn, :show, user)
     end
 
+    @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn, user: user} do
       conn = put conn, user_path(conn, :update, user), user: @invalid_attrs
-      assert html_response(conn, 200) =~ "Edit User"
+
+      assert html_response(conn, 200)
     end
   end
 
   describe "delete user" do
     setup [:create_user]
 
+    @tag login_as: "test@user.com"
     test "deletes chosen user", %{conn: conn, user: user} do
       conn = delete conn, user_path(conn, :delete, user)
+
       assert redirected_to(conn) == user_path(conn, :index)
-      assert_error_sent 404, fn ->
-        get conn, user_path(conn, :show, user)
-      end
     end
+  end
+
+  defp fixture(:user, attributes \\ %{}) do
+    {:ok, user} =
+      @create_attrs
+      |> Map.merge(attributes)
+      |> Accounts.create_user()
+
+    user
+  end
+
+  defp do_setup(_, nil), do: :ok
+  defp do_setup(conn, email) do
+    user = fixture(:user, %{email: email})
+    conn = assign(conn, :current_user, user)
+
+    {:ok, conn: conn, user: user}
   end
 
   defp create_user(_) do
     user = fixture(:user)
+
     {:ok, user: user}
   end
 end
