@@ -1,6 +1,8 @@
 defmodule SnlWeb.LayoutView do
   use SnlWeb, :view
 
+  import Phoenix.Controller, only: [get_flash: 1]
+
   def locale do
     Gettext.get_locale(SnlWeb.Gettext)
   end
@@ -19,7 +21,7 @@ defmodule SnlWeb.LayoutView do
 
   defp get_flash_message(conn) do
     conn
-    |> Phoenix.Controller.get_flash
+    |> get_flash
     |> Enum.at(0)
   end
 end
