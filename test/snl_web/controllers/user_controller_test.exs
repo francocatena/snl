@@ -1,7 +1,7 @@
 defmodule SnlWeb.UserControllerTest do
   use SnlWeb.ConnCase
 
-  alias Snl.Accounts
+  import Snl.Support.FixtureHelper
 
   @create_attrs  %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
   @update_attrs  %{email: "new@email.com", lastname: "some updated lastname", name: "some updated name"}
@@ -101,15 +101,6 @@ defmodule SnlWeb.UserControllerTest do
 
       assert redirected_to(conn) == user_path(conn, :index)
     end
-  end
-
-  defp fixture(:user, attributes \\ %{}) do
-    {:ok, user} =
-      @create_attrs
-      |> Map.merge(attributes)
-      |> Accounts.create_user()
-
-    user
   end
 
   defp do_setup(_, nil), do: :ok

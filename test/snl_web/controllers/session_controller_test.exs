@@ -1,6 +1,8 @@
 defmodule SnlWeb.SessionControllerTest do
   use SnlWeb.ConnCase
 
+  import Snl.Support.FixtureHelper
+
   @valid_user   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
   @invalid_user %{email: "wrong@email.com", password: "wrong"}
 
@@ -32,7 +34,7 @@ defmodule SnlWeb.SessionControllerTest do
 
   describe "create session" do
     test "assigns current user when credentials are valid", %{conn: conn} do
-      user = fixture(:user)
+      user = fixture(:user, @valid_user)
       conn = post conn, session_path(conn, :create), session: @valid_user
 
       assert user.id == get_session(conn, :user_id)
@@ -59,11 +61,5 @@ defmodule SnlWeb.SessionControllerTest do
       assert get_flash(conn, :info)
       assert redirected_to(conn) == root_path(conn, :index)
     end
-  end
-
-  defp fixture(:user) do
-    {:ok, user} = Snl.Accounts.create_user(@valid_user)
-
-    user
   end
 end

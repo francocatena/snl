@@ -1,5 +1,7 @@
 defmodule SnlWeb.SessionPlugTest do
-  use SnlWeb.ConnCase, async: true
+  use SnlWeb.ConnCase
+
+  import Snl.Support.FixtureHelper
 
   alias SnlWeb.SessionPlug
 
@@ -64,16 +66,5 @@ defmodule SnlWeb.SessionPlugTest do
 
       refute conn.halted
     end
-  end
-
-  defp fixture(:user) do
-    {:ok, user} = Snl.Accounts.create_user(%{
-      name:     "some name",
-      lastname: "some lastname",
-      email:    "some@email.com",
-      password: "123456"
-    })
-
-    user
   end
 end

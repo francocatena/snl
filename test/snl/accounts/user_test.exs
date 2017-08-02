@@ -1,4 +1,4 @@
-defmodule Snl.Accounts.UsersTest do
+defmodule Snl.Accounts.UserTest do
   use Snl.DataCase, async: true
 
   describe "user" do

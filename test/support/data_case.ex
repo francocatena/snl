@@ -22,6 +22,7 @@ defmodule Snl.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Snl.DataCase
+      import Snl.Support.FixtureHelper
     end
   end
 

@@ -10,23 +10,14 @@ defmodule Snl.AccountsTest do
     @update_attrs  %{email: "new@email.com", lastname: "some updated lastname", name: "some updated name"}
     @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123"}
 
-    defp user_fixture(attrs \\ %{}) do
-      {:ok, user} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Accounts.create_user()
-
-      %{user | password: nil}
-    end
-
     test "list_users/0 returns all users" do
-      user = user_fixture()
+      user = fixture(:user)
 
       assert Accounts.list_users() == [user]
     end
 
     test "get_user!/1 returns the user with given id" do
-      user = user_fixture()
+      user = fixture(:user)
 
       assert Accounts.get_user!(user.id) == user
     end
@@ -43,7 +34,7 @@ defmodule Snl.AccountsTest do
     end
 
     test "update_user/2 with valid data updates the user" do
-      user = user_fixture()
+      user = fixture(:user, @valid_attrs)
 
       assert {:ok, user} = Accounts.update_user(user, @update_attrs)
       assert %User{} = user
@@ -53,21 +44,21 @@ defmodule Snl.AccountsTest do
     end
 
     test "update_user/2 with invalid data returns error changeset" do
-      user = user_fixture()
+      user = fixture(:user)
 
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
       assert user == Accounts.get_user!(user.id)
     end
 
     test "delete_user/1 deletes the user" do
-      user = user_fixture()
+      user = fixture(:user)
 
       assert {:ok, %User{}} = Accounts.delete_user(user)
       assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
     end
 
     test "change_user/1 returns a user changeset" do
-      user = user_fixture()
+      user = fixture(:user)
 
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
@@ -75,7 +66,7 @@ defmodule Snl.AccountsTest do
 
   describe "auth" do
     test "authenticate_by_email_and_password/2 returns :ok with valid credentials" do
-      user     = user_fixture()
+      user     = fixture(:user, @valid_attrs)
       email    = @valid_attrs.email
       password = @valid_attrs.password
 
@@ -88,7 +79,7 @@ defmodule Snl.AccountsTest do
       email    = @valid_attrs.email
       password = "wrong"
 
-      user_fixture() # Create user just to be sure
+      fixture(:user, @valid_attrs) # Create user just to be sure
 
       assert {:error, :unauthorized} ==
         Accounts.authenticate_by_email_and_password(email, password)
