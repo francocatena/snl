@@ -1,6 +1,7 @@
 const Path              = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJSPlugin    = require('uglifyjs-webpack-plugin');
 
 const config = {
   entry: './js/app.js',
@@ -37,6 +38,7 @@ const config = {
   },
 
   plugins: [
+    new UglifyJSPlugin({ sourceMap: true }),
     new CopyWebpackPlugin([{ from: './static' }]),
     new ExtractTextPlugin('css/app.css')
   ],
