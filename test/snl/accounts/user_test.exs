@@ -2,8 +2,6 @@ defmodule Snl.Accounts.UsersTest do
   use Snl.DataCase, async: true
 
   describe "user" do
-    import Comeonin.Bcrypt, only: [checkpw: 2]
-
     alias Snl.Accounts.User
 
     @valid_attrs   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
@@ -19,6 +17,16 @@ defmodule Snl.Accounts.UsersTest do
       changeset = User.changeset(%User{}, @invalid_attrs)
 
       refute changeset.valid?
+    end
+
+    test "changeset does not accept short attributes" do
+      attrs =
+        @valid_attrs
+        |> Map.put(:password, String.duplicate("a", 5))
+
+      changeset = User.changeset(%User{}, attrs)
+
+      assert "should be at least 6 character(s)" in errors_on(changeset).password
     end
 
     test "changeset does not accept long attributes" do
@@ -45,11 +53,10 @@ defmodule Snl.Accounts.UsersTest do
     end
 
     test "changeset hashes password when present" do
-      password  = "supersecret"
-      attrs     = Map.put(@valid_attrs, :password, password)
-      changeset = User.changeset(%User{}, attrs)
+      changeset = User.changeset(%User{}, @valid_attrs)
+      %{password: password, password_hash: password_hash} = changeset.changes
 
-      assert checkpw(password, changeset.changes.password_hash)
+      assert Comeonin.Bcrypt.checkpw(password, password_hash)
     end
 
     test "changeset ignores blank password" do
