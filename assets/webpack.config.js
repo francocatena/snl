@@ -5,6 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const config = {
   entry: './js/app.js',
 
+  devtool: 'source-map',
+
   output: {
     path: Path.resolve(__dirname, '../priv/static'),
     filename: 'js/app.js'
