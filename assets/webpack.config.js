@@ -1,7 +1,7 @@
-const Path              = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJSPlugin    = require('uglifyjs-webpack-plugin');
+const Path              = require('path')
+const UglifyJSPlugin    = require('uglifyjs-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const config = {
   entry: './js/app.js',
@@ -9,19 +9,19 @@ const config = {
   devtool: 'source-map',
 
   output: {
-    path: Path.resolve(__dirname, '../priv/static'),
+    path:     Path.resolve(__dirname, '../priv/static'),
     filename: 'js/app.js'
   },
 
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test:    /\.js$/,
+        loader:  'babel-loader',
         exclude: [
           /node_modules/,
           /deps/
         ],
-        loader: 'babel-loader',
         options: {
           presets: ['env']
         }
@@ -29,9 +29,9 @@ const config = {
 
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
+        use:  ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
+          use:      ['css-loader', 'sass-loader']
         })
       }
     ]
@@ -48,6 +48,6 @@ const config = {
       phoenix: `${__dirname}/../deps/phoenix/web/static/js/phoenix.js`
     }
   }
-};
+}
 
-module.exports = config;
+module.exports = config
