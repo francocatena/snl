@@ -1,0 +1,18 @@
+defmodule Snl.Accounts.UserRepoTest do
+  use Snl.DataCase
+
+  describe "user" do
+    alias Snl.Accounts.User
+
+    @valid_attrs %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
+
+    test "converts unique constraint on email to error" do
+      user      = fixture(:user, @valid_attrs)
+      attrs     = Map.put(@valid_attrs, :email, user.email)
+      changeset = User.changeset(%User{}, attrs)
+
+      assert {:error, changeset} = Repo.insert(changeset)
+      assert "has already been taken" in errors_on(changeset).email
+    end
+  end
+end
