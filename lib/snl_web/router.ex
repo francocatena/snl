@@ -5,10 +5,10 @@ defmodule SnlWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug :fetch_current_user
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :put_cache_control_headers
-    plug :fetch_current_user
   end
 
   pipeline :api do
@@ -21,7 +21,7 @@ defmodule SnlWeb.Router do
     get "/", RootController, :index
 
     resources "/sessions", SessionController, only: [:new, :create, :delete],
-                                             singleton: true
+                                              singleton: true
     resources "/users", UserController
   end
 
