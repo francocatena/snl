@@ -14,6 +14,11 @@
     "alternate": "test/snl_web/views/{}_view_test.exs"
   },
 
+  "lib/snl_web/views/*_helpers.ex": {
+    "type": "helper",
+    "alternate": "test/snl_web/views/{}_helpers_test.exs"
+  },
+
   "lib/snl_web/plugs/*_plug.ex": {
     "type": "plug",
     "alternate": "test/snl_web/plugs/{}_plug_test.exs"
@@ -32,6 +37,11 @@
   "test/snl_web/views/*_view_test.exs": {
     "type": "tview",
     "alternate": "lib/snl_web/views/{}_view.ex"
+  },
+
+  "test/snl_web/views/*_helpers_test.exs": {
+    "type": "thelper",
+    "alternate": "lib/snl_web/views/{}_helpers.ex"
   },
 
   "test/snl_web/plugs/*_plug_test.exs": {
