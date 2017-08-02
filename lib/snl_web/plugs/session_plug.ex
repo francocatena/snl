@@ -7,7 +7,7 @@ defmodule SnlWeb.SessionPlug do
   alias SnlWeb.Router.Helpers
 
   def fetch_current_user(%{assigns: %{current_user: user}} = conn, _opts)
-  when not is_nil(user),
+  when is_map(user),
     do: conn
 
   def fetch_current_user(conn, _opts) do
@@ -18,7 +18,7 @@ defmodule SnlWeb.SessionPlug do
   end
 
   def authenticate(%{assigns: %{current_user: user}} = conn, _opts)
-  when not is_nil(user),
+  when is_map(user),
     do: conn
 
   def authenticate(conn, _opts) do
