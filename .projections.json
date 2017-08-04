@@ -24,6 +24,10 @@
     "alternate": "test/snl_web/plugs/{}_plug_test.exs"
   },
 
+  "priv/gettext/*.po": {
+    "type": "locale"
+  },
+
   "test/snl_web/channels/*_channel_test.exs": {
     "type": "tchannel",
     "alternate": "lib/snl_web/channels/{}_channel.ex"
