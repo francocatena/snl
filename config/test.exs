@@ -6,6 +6,9 @@ config :snl, SnlWeb.Endpoint,
   http: [port: 4001],
   server: false
 
+# Gettext config
+config :snl, SnlWeb.Gettext, default_locale: "en"
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 
