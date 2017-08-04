@@ -17,6 +17,9 @@ config :snl, SnlWeb.Endpoint,
   pubsub: [name: Snl.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# Gettext config
+config :snl, SnlWeb.Gettext, default_locale: "es_AR"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
