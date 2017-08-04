@@ -1,0 +1,119 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+
+#: lib/snl_web/views/user_view.ex:19
+msgid "Are you sure?"
+msgstr ""
+
+#: lib/snl_web/templates/user/edit.html.eex:14
+#: lib/snl_web/templates/user/new.html.eex:14
+#: lib/snl_web/templates/user/show.html.eex:18
+msgid "Back"
+msgstr ""
+
+#: lib/snl_web/views/user_view.ex:17
+msgid "Delete"
+msgstr ""
+
+#: lib/snl_web/templates/user/show.html.eex:17 lib/snl_web/views/user_view.ex:13
+msgid "Edit"
+msgstr ""
+
+#: lib/snl_web/templates/user/edit.html.eex:4
+msgid "Edit user"
+msgstr ""
+
+#: lib/snl_web/templates/session/new.html.eex:13
+#: lib/snl_web/templates/session/new.html.eex:15
+#: lib/snl_web/templates/user/_form.html.eex:25
+#: lib/snl_web/templates/user/index.html.eex:12
+msgid "Email"
+msgstr ""
+
+#: lib/snl_web/controllers/session_controller.ex:24
+msgid "Invalid email/password combination"
+msgstr ""
+
+#: lib/snl_web/templates/user/_form.html.eex:17
+#: lib/snl_web/templates/user/index.html.eex:11
+msgid "Lastname"
+msgstr ""
+
+#: lib/snl_web/templates/session/new.html.eex:7
+#: lib/snl_web/templates/session/new.html.eex:36
+msgid "Login"
+msgstr ""
+
+#: lib/snl_web/templates/layout/_menu.html.eex:33
+msgid "Logout"
+msgstr ""
+
+#: lib/snl_web/templates/user/_form.html.eex:9
+#: lib/snl_web/templates/user/index.html.eex:10
+msgid "Name"
+msgstr ""
+
+#: lib/snl_web/templates/user/index.html.eex:39
+#: lib/snl_web/templates/user/new.html.eex:4
+msgid "New user"
+msgstr ""
+
+#: lib/snl_web/templates/user/_form.html.eex:4
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr ""
+
+#: lib/snl_web/templates/session/new.html.eex:24
+#: lib/snl_web/templates/session/new.html.eex:26
+#: lib/snl_web/templates/user/_form.html.eex:33
+msgid "Password"
+msgstr ""
+
+#: lib/snl_web/controllers/session_controller.ex:32
+msgid "See you soon!"
+msgstr ""
+
+#: lib/snl_web/views/user_view.ex:9
+msgid "Show"
+msgstr ""
+
+#: lib/snl_web/templates/layout/app.html.eex:8
+msgid "Snl App"
+msgstr ""
+
+#: lib/snl_web/templates/user/_form.html.eex:42
+msgid "Submit"
+msgstr ""
+
+#: lib/snl_web/controllers/user_controller.ex:23
+msgid "User created successfully."
+msgstr ""
+
+#: lib/snl_web/controllers/user_controller.ex:59
+msgid "User deleted successfully."
+msgstr ""
+
+#: lib/snl_web/controllers/user_controller.ex:47
+msgid "User updated successfully."
+msgstr ""
+
+#: lib/snl_web/templates/layout/_menu.html.eex:20
+#: lib/snl_web/templates/user/index.html.eex:4
+msgid "Users"
+msgstr ""
+
+#: lib/snl_web/controllers/session_controller.ex:18
+msgid "Welcome!"
+msgstr ""
+
+#: lib/snl_web/plugs/session_plug.ex:26
+msgid "You must be logged in."
+msgstr ""

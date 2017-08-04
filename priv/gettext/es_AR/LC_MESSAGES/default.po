@@ -1,0 +1,119 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: es_AR\n"
+
+#: lib/snl_web/views/user_view.ex:19
+msgid "Are you sure?"
+msgstr "¿Está seguro?"
+
+#: lib/snl_web/templates/user/edit.html.eex:14
+#: lib/snl_web/templates/user/new.html.eex:14
+#: lib/snl_web/templates/user/show.html.eex:18
+msgid "Back"
+msgstr "Volver"
+
+#: lib/snl_web/views/user_view.ex:17
+msgid "Delete"
+msgstr "Eliminar"
+
+#: lib/snl_web/templates/user/show.html.eex:17 lib/snl_web/views/user_view.ex:13
+msgid "Edit"
+msgstr "Editar"
+
+#: lib/snl_web/templates/user/edit.html.eex:4
+msgid "Edit user"
+msgstr "Editar usuario"
+
+#: lib/snl_web/templates/session/new.html.eex:13
+#: lib/snl_web/templates/session/new.html.eex:15
+#: lib/snl_web/templates/user/_form.html.eex:25
+#: lib/snl_web/templates/user/index.html.eex:12
+msgid "Email"
+msgstr "Correo"
+
+#: lib/snl_web/controllers/session_controller.ex:24
+msgid "Invalid email/password combination"
+msgstr "El usuario y/o contraseña no es válido"
+
+#: lib/snl_web/templates/user/_form.html.eex:17
+#: lib/snl_web/templates/user/index.html.eex:11
+msgid "Lastname"
+msgstr "Apellido"
+
+#: lib/snl_web/templates/session/new.html.eex:7
+#: lib/snl_web/templates/session/new.html.eex:36
+msgid "Login"
+msgstr "Ingreso"
+
+#: lib/snl_web/templates/layout/_menu.html.eex:33
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: lib/snl_web/templates/user/_form.html.eex:9
+#: lib/snl_web/templates/user/index.html.eex:10
+msgid "Name"
+msgstr "Nombre"
+
+#: lib/snl_web/templates/user/index.html.eex:39
+#: lib/snl_web/templates/user/new.html.eex:4
+msgid "New user"
+msgstr "Nuevo usuario"
+
+#: lib/snl_web/templates/user/_form.html.eex:4
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
+
+#: lib/snl_web/templates/session/new.html.eex:24
+#: lib/snl_web/templates/session/new.html.eex:26
+#: lib/snl_web/templates/user/_form.html.eex:33
+msgid "Password"
+msgstr "Contraseña"
+
+#: lib/snl_web/controllers/session_controller.ex:32
+msgid "See you soon!"
+msgstr "Hasta la próxima..."
+
+#: lib/snl_web/views/user_view.ex:9
+msgid "Show"
+msgstr "Ver"
+
+#: lib/snl_web/templates/layout/app.html.eex:8
+msgid "Snl App"
+msgstr "Snl App"
+
+#: lib/snl_web/templates/user/_form.html.eex:42
+msgid "Submit"
+msgstr "Enviar"
+
+#: lib/snl_web/controllers/user_controller.ex:23
+msgid "User created successfully."
+msgstr "Usuario creado correctamete."
+
+#: lib/snl_web/controllers/user_controller.ex:59
+msgid "User deleted successfully."
+msgstr "Usuario eliminado correctamente."
+
+#: lib/snl_web/controllers/user_controller.ex:47
+msgid "User updated successfully."
+msgstr "Usuario actualizado correctamente."
+
+#: lib/snl_web/templates/layout/_menu.html.eex:20
+#: lib/snl_web/templates/user/index.html.eex:4
+msgid "Users"
+msgstr "Usuarios"
+
+#: lib/snl_web/controllers/session_controller.ex:18
+msgid "Welcome!"
+msgstr "¡Bienvenido!"
+
+#: lib/snl_web/plugs/session_plug.ex:26
+msgid "You must be logged in."
+msgstr "Debe ingresar para acceder al contenido."
