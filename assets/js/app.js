@@ -9,4 +9,3 @@ import 'phoenix_html'
 import './delete_button'
 import './menu'
 import './stylesheets'
-
