@@ -1,15 +1,12 @@
 defmodule SnlWeb.UserControllerTest do
   use SnlWeb.ConnCase
+  use Snl.Support.LoginHelper
 
   import Snl.Support.FixtureHelper
 
   @create_attrs  %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
   @update_attrs  %{email: "new@email.com", lastname: "some updated lastname", name: "some updated name"}
   @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123"}
-
-  setup %{conn: conn} = config do
-    do_setup conn, config[:login_as]
-  end
 
   describe "unauthorized access" do
     test "requires user authentication on all actions", %{conn: conn} do
@@ -33,7 +30,7 @@ defmodule SnlWeb.UserControllerTest do
     test "lists all users", %{conn: conn} do
       conn = get conn, user_path(conn, :index)
 
-      assert html_response(conn, 200) =~ ~r/Users/
+      assert html_response(conn, 200) =~ "Users"
     end
   end
 
@@ -42,7 +39,7 @@ defmodule SnlWeb.UserControllerTest do
     test "renders form", %{conn: conn} do
       conn = get conn, user_path(conn, :new)
 
-      assert html_response(conn, 200) =~ ~r/New user/
+      assert html_response(conn, 200) =~ "New user"
     end
   end
 
@@ -103,16 +100,8 @@ defmodule SnlWeb.UserControllerTest do
     end
   end
 
-  defp do_setup(_, nil), do: :ok
-  defp do_setup(conn, email) do
-    user = fixture(:user, %{email: email})
-    conn = assign(conn, :current_user, user)
-
-    {:ok, conn: conn, user: user}
-  end
-
   defp create_user(_) do
-    user = fixture(:user)
+    user = fixture(:user, @create_attrs)
 
     {:ok, user: user}
   end
