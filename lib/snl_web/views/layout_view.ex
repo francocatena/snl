@@ -4,7 +4,9 @@ defmodule SnlWeb.LayoutView do
   import Phoenix.Controller, only: [get_flash: 1]
 
   def locale do
-    Gettext.get_locale(SnlWeb.Gettext)
+    SnlWeb.Gettext
+    |> Gettext.get_locale()
+    |> String.replace(~r/_\w+/, "")
   end
 
   def render_flash(conn) do

@@ -18,6 +18,12 @@ defmodule SnlWeb.LayoutViewTest do
     assert LayoutView.locale() == "en"
   end
 
+  test "locale strips so it's ISO 639-1 _ish_" do
+    Gettext.put_locale(SnlWeb.Gettext, "es_AR")
+
+    assert LayoutView.locale() == "es"
+  end
+
   describe "render flash" do
     test "return message template when present", %{conn: conn} do
       result =
