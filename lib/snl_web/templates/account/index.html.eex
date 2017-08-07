@@ -1,0 +1,40 @@
+<section class="section">
+  <div class="container">
+    <h2 class="title">
+      <%= gettext "Accounts" %>
+    </h2>
+
+    <table class="table is-striped is-narrow is-fullwidth">
+      <thead>
+        <tr>
+          <th><%= gettext "Name" %></th>
+          <th><%= gettext "Prefix" %></th>
+
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for account <- @accounts do %>
+          <tr>
+            <td><%= account.name %></td>
+            <td><%= account.db_prefix %></td>
+
+            <td class="has-text-right">
+              <span><%= link_to_show   @conn, account %></span>
+              <span><%= link_to_edit   @conn, account %></span>
+              <span><%= link_to_delete @conn, account %></span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      <span><%= link gettext("New account"), to: account_path(@conn, :new) %></span>
+    </p>
+  </div>
+</footer>

@@ -19,6 +19,9 @@
         <%= link to: user_path(@conn, :index), class: "navbar-item" do %>
           <%= gettext("Users") %>
         <% end %>
+        <%= link to: account_path(@conn, :index), class: "navbar-item" do %>
+          <%= gettext("Accounts") %>
+        <% end %>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">

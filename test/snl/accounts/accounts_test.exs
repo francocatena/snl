@@ -93,4 +93,63 @@ defmodule Snl.AccountsTest do
         Accounts.authenticate_by_email_and_password(email, password)
     end
   end
+
+  describe "accounts" do
+    alias Snl.Accounts.Account
+
+    @valid_attrs   %{db_prefix: "db_prefix", name: "some name"}
+    @update_attrs  %{db_prefix: "updated_db_prefix", name: "some updated name"}
+    @invalid_attrs %{db_prefix: "db prefix", name: nil}
+
+    test "list_accounts/0 returns all accounts" do
+      account = fixture(:account, @valid_attrs)
+
+      assert Accounts.list_accounts() == [account]
+    end
+
+    test "get_account!/1 returns the account with given id" do
+      account = fixture(:account, @valid_attrs)
+
+      assert Accounts.get_account!(account.id) == account
+    end
+
+    test "create_account/1 with valid data creates a account" do
+      assert {:ok, %Account{} = account} = Accounts.create_account(@valid_attrs)
+      assert account.db_prefix == "db_prefix"
+      assert account.name == "some name"
+    end
+
+    test "create_account/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_account(@invalid_attrs)
+    end
+
+    test "update_account/2 with valid data updates the account" do
+      account = fixture(:account, @valid_attrs)
+
+      assert {:ok, account} = Accounts.update_account(account, @update_attrs)
+      assert %Account{} = account
+      assert account.db_prefix == "updated_db_prefix"
+      assert account.name == "some updated name"
+    end
+
+    test "update_account/2 with invalid data returns error changeset" do
+      account = fixture(:account, @valid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_account(account, @invalid_attrs)
+      assert account == Accounts.get_account!(account.id)
+    end
+
+    test "delete_account/1 deletes the account" do
+      account = fixture(:account, @valid_attrs)
+
+      assert {:ok, %Account{}} = Accounts.delete_account(account)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_account!(account.id) end
+    end
+
+    test "change_account/1 returns a account changeset" do
+      account = fixture(:account, @valid_attrs)
+
+      assert %Ecto.Changeset{} = Accounts.change_account(account)
+    end
+  end
 end
