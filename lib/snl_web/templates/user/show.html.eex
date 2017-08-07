@@ -4,7 +4,7 @@
 
     <ul>
       <li>
-        <strong>Email:</strong>
+        <strong><%= gettext("Email") %>:</strong>
         <%= link @user.email, to: "mailto:#{@user.email}" %>
       </li>
     </ul>
