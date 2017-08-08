@@ -6,7 +6,7 @@
     "watch": "node_modules/.bin/webpack --watch-stdin --progress --color"
   },
   "dependencies": {
-    "bulma": "^0.5.0",
+    "bulma": "^0.5.1",
     "font-awesome": "^4.7.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html"
@@ -22,6 +22,6 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack": "^3.4.1"
+    "webpack": "^3.5.1"
   }
 }
