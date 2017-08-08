@@ -5,7 +5,7 @@ defmodule Snl.Accounts.UserTest do
     alias Snl.Accounts.User
 
     @valid_attrs   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
-    @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123"}
+    @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123", account_id: nil}
 
     test "changeset with valid attributes" do
       changeset = User.changeset(%User{}, @valid_attrs)
@@ -67,7 +67,7 @@ defmodule Snl.Accounts.UserTest do
     end
 
     test "create changeset with valid attributes" do
-      changeset = User.create_changeset(%User{}, @valid_attrs)
+      changeset = User.create_changeset(%User{account_id: 1}, @valid_attrs)
 
       assert changeset.valid?
     end

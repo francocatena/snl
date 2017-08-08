@@ -1,7 +1,7 @@
 defmodule Snl.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Snl.Accounts.User
+  alias Snl.Accounts.{Account, User}
 
 
   schema "users" do
@@ -11,6 +11,8 @@ defmodule Snl.Accounts.User do
     field :password_hash, :string
     field :password, :string, virtual: true
 
+    belongs_to :account, Account
+
     timestamps()
   end
 
@@ -18,21 +20,28 @@ defmodule Snl.Accounts.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:name, :lastname, :email, :password])
+    |> validation
+  end
+
+  @doc false
+  def create_changeset(%User{} = user, attrs) do
+    user
+    |> cast(attrs, [:name, :lastname, :email, :password])
+    |> validate_required([:password, :account_id])
+    |> validation
+  end
+
+  defp validation(changeset) do
+    changeset
     |> validate_required([:name, :lastname, :email])
     |> validate_format(:email, ~r/.+@.+\..+/)
     |> validate_length(:name, max: 255)
     |> validate_length(:lastname, max: 255)
     |> validate_length(:email, max: 255)
     |> validate_length(:password, min: 6, max: 100)
+    |> assoc_constraint(:account)
     |> unique_constraint(:email)
     |> put_password_hash()
-  end
-
-  @doc false
-  def create_changeset(%User{} = user, attrs) do
-    user
-    |> changeset(attrs)
-    |> validate_required([:password])
   end
 
   defp put_password_hash(%{valid?: true, changes: %{password: password}} = changeset) do

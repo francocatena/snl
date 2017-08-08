@@ -38,6 +38,7 @@ defmodule SnlWeb.SessionControllerTest do
       conn = post conn, session_path(conn, :create), session: @valid_user
 
       assert user.id == get_session(conn, :user_id)
+      assert user.account_id == get_session(conn, :account_id)
       assert redirected_to(conn) == user_path(conn, :index)
     end
 
@@ -45,6 +46,7 @@ defmodule SnlWeb.SessionControllerTest do
       conn = post conn, session_path(conn, :create), session: @invalid_user
 
       refute get_session(conn, :user_id)
+      refute get_session(conn, :account_id)
       assert html_response(conn, 200)
       assert get_flash(conn, :error) =~ ~r/Invalid/
     end
@@ -58,6 +60,7 @@ defmodule SnlWeb.SessionControllerTest do
         |> delete(session_path(conn, :delete))
 
       refute get_session(conn, :user_id)
+      refute get_session(conn, :account_id)
       assert get_flash(conn, :info)
       assert redirected_to(conn) == root_path(conn, :index)
     end

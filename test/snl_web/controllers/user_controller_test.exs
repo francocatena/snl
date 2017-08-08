@@ -100,8 +100,8 @@ defmodule SnlWeb.UserControllerTest do
     end
   end
 
-  defp create_user(_) do
-    user = fixture(:user, @create_attrs)
+  defp create_user(%{account: account}) do
+    user = fixture(:user, @create_attrs, account.id)
 
     {:ok, user: user}
   end

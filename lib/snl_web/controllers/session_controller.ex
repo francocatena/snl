@@ -17,6 +17,7 @@ defmodule SnlWeb.SessionController do
         conn
         |> put_flash(:info, gettext("Welcome!"))
         |> put_session(:user_id, user.id)
+        |> put_session(:account_id, user.account_id)
         |> configure_session(renew: true)
         |> redirect(to: user_path(conn, :index))
       {:error, :unauthorized} ->

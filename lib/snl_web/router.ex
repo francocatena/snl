@@ -5,6 +5,7 @@ defmodule SnlWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug :fetch_current_account
     plug :fetch_current_user
     plug :protect_from_forgery
     plug :put_secure_browser_headers

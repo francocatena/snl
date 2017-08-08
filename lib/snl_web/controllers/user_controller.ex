@@ -6,8 +6,8 @@ defmodule SnlWeb.UserController do
 
   plug :authenticate
 
-  def index(conn, _params) do
-    users = Accounts.list_users()
+  def index(%{assigns: %{current_account: account}} = conn, _params) do
+    users = Accounts.list_users(account.id)
     render(conn, "index.html", users: users)
   end
 
@@ -16,8 +16,8 @@ defmodule SnlWeb.UserController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"user" => user_params}) do
-    case Accounts.create_user(user_params) do
+  def create(%{assigns: %{current_account: account}} = conn, %{"user" => user_params}) do
+    case Accounts.create_user(user_params, account.id) do
       {:ok, user} ->
         conn
         |> put_flash(:info, gettext("User created successfully."))
@@ -27,19 +27,19 @@ defmodule SnlWeb.UserController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+  def show(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
+    user = Accounts.get_user!(id, account.id)
     render(conn, "show.html", user: user)
   end
 
-  def edit(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+  def edit(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
+    user = Accounts.get_user!(id, account.id)
     changeset = Accounts.change_user(user)
     render(conn, "edit.html", user: user, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(id)
+  def update(%{assigns: %{current_account: account}} = conn, %{"id" => id, "user" => user_params}) do
+    user = Accounts.get_user!(id, account.id)
 
     case Accounts.update_user(user, user_params) do
       {:ok, user} ->
@@ -51,8 +51,8 @@ defmodule SnlWeb.UserController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+  def delete(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
+    user = Accounts.get_user!(id, account.id)
     {:ok, _user} = Accounts.delete_user(user)
 
     conn

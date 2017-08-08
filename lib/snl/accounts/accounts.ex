@@ -9,33 +9,35 @@ defmodule Snl.Accounts do
   alias Snl.Accounts.{Auth, User}
 
   @doc """
-  Returns the list of users.
+  Returns the list of users for the account.
 
   ## Examples
 
-      iex> list_users()
+      iex> list_users(1)
       [%User{}, ...]
 
   """
-  def list_users do
-    Repo.all(User)
+  def list_users(account_id) do
+    Repo.all(from u in User, where: [account_id: ^account_id])
   end
 
   @doc """
   Gets a single user.
 
-  Raises `Ecto.NoResultsError` if the User does not exist.
+  Raises `Ecto.NoResultsError` if the User does not exist on the account.
 
   ## Examples
 
-      iex> get_user!(123)
+      iex> get_user!(123, 1)
       %User{}
 
-      iex> get_user!(456)
+      iex> get_user!(123, 2)
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id, account_id) do
+    Repo.get_by!(User, id: id, account_id: account_id)
+  end
 
   @doc """
   Creates a user.
@@ -49,8 +51,8 @@ defmodule Snl.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs \\ %{}) do
-    %User{}
+  def create_user(attrs, account_id) do
+    %User{account_id: account_id}
     |> User.create_changeset(attrs)
     |> Repo.insert()
   end

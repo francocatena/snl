@@ -1,12 +1,14 @@
 defmodule Snl.Accounts.Account do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Snl.Accounts.Account
+  alias Snl.Accounts.{Account, User}
 
 
   schema "accounts" do
     field :db_prefix, :string
     field :name, :string
+
+    has_many :users, User
 
     timestamps()
   end

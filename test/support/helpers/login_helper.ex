@@ -2,6 +2,8 @@ defmodule Snl.Support.LoginHelper do
   use ExUnit.CaseTemplate
   use Phoenix.ConnTest
 
+  import Snl.Support.FixtureHelper
+
   alias Snl.Accounts.User
 
   using do
@@ -16,9 +18,13 @@ defmodule Snl.Support.LoginHelper do
 
   def do_setup(_, nil), do: :ok
   def do_setup(conn, email) do
-    user = %User{email: email, lastname: "some lastname", name: "some name"}
-    conn = assign(conn, :current_user, user)
+    account = fixture(:account)
+    user    = %User{email: email, account_id: account.id}
+    conn    =
+      conn
+      |> assign(:current_account, account)
+      |> assign(:current_user, user)
 
-    {:ok, conn: conn, user: user}
+    {:ok, conn: conn, account: account, user: user}
   end
 end
