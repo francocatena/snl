@@ -16,9 +16,8 @@
 })
 
 {:ok, _} = Snl.Accounts.create_user(%{
-  name:       "Admin",
-  lastname:   "Admin",
-  email:      "admin@snl.com",
-  password:   "123456",
-  account_id: account.id
-})
+  name:     "Admin",
+  lastname: "Admin",
+  email:    "admin@snl.com",
+  password: "123456",
+}, account.id)
