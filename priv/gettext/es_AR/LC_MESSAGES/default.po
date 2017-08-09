@@ -10,26 +10,21 @@ msgid ""
 msgstr ""
 "Language: es_AR\n"
 
-#: lib/snl_web/views/account_view.ex:15 lib/snl_web/views/user_view.ex:19
+#: lib/snl_web/views/user_view.ex:19
 msgid "Are you sure?"
 msgstr "¿Está seguro?"
 
-#: lib/snl_web/templates/account/edit.html.eex:14
-#: lib/snl_web/templates/account/new.html.eex:14
-#: lib/snl_web/templates/account/show.html.eex:18
 #: lib/snl_web/templates/user/edit.html.eex:14
 #: lib/snl_web/templates/user/new.html.eex:14
 #: lib/snl_web/templates/user/show.html.eex:18
 msgid "Back"
 msgstr "Volver"
 
-#: lib/snl_web/views/account_view.ex:13 lib/snl_web/views/user_view.ex:17
+#: lib/snl_web/views/user_view.ex:17
 msgid "Delete"
 msgstr "Eliminar"
 
-#: lib/snl_web/templates/account/show.html.eex:17
-#: lib/snl_web/templates/user/show.html.eex:17
-#: lib/snl_web/views/account_view.ex:9 lib/snl_web/views/user_view.ex:13
+#: lib/snl_web/templates/user/show.html.eex:17 lib/snl_web/views/user_view.ex:13
 msgid "Edit"
 msgstr "Editar"
 
@@ -45,7 +40,7 @@ msgstr "Editar usuario"
 msgid "Email"
 msgstr "Correo"
 
-#: lib/snl_web/controllers/session_controller.ex:24
+#: lib/snl_web/controllers/session_controller.ex:25
 msgid "Invalid email/password combination"
 msgstr "El usuario y/o contraseña no es válido"
 
@@ -59,12 +54,10 @@ msgstr "Apellido"
 msgid "Login"
 msgstr "Ingreso"
 
-#: lib/snl_web/templates/layout/_menu.html.eex:36
+#: lib/snl_web/templates/layout/_menu.html.eex:33
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: lib/snl_web/templates/account/_form.html.eex:9
-#: lib/snl_web/templates/account/index.html.eex:10
 #: lib/snl_web/templates/user/_form.html.eex:9
 #: lib/snl_web/templates/user/index.html.eex:10
 msgid "Name"
@@ -75,7 +68,6 @@ msgstr "Nombre"
 msgid "New user"
 msgstr "Nuevo usuario"
 
-#: lib/snl_web/templates/account/_form.html.eex:4
 #: lib/snl_web/templates/user/_form.html.eex:4
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
@@ -86,11 +78,11 @@ msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 msgid "Password"
 msgstr "Contraseña"
 
-#: lib/snl_web/controllers/session_controller.ex:32
+#: lib/snl_web/controllers/session_controller.ex:33
 msgid "See you soon!"
 msgstr "Hasta la próxima..."
 
-#: lib/snl_web/views/account_view.ex:5 lib/snl_web/views/user_view.ex:9
+#: lib/snl_web/views/user_view.ex:9
 msgid "Show"
 msgstr "Ver"
 
@@ -98,7 +90,6 @@ msgstr "Ver"
 msgid "Snl App"
 msgstr "Snl App"
 
-#: lib/snl_web/templates/account/_form.html.eex:26
 #: lib/snl_web/templates/user/_form.html.eex:42
 msgid "Submit"
 msgstr "Enviar"
@@ -124,38 +115,6 @@ msgstr "Usuarios"
 msgid "Welcome!"
 msgstr "¡Bienvenido!"
 
-#: lib/snl_web/plugs/session_plug.ex:26
+#: lib/snl_web/plugs/session_plug.ex:38
 msgid "You must be logged in."
 msgstr "Debe ingresar para acceder al contenido."
-
-#: lib/snl_web/controllers/account_controller.ex:23
-msgid "Account created successfully."
-msgstr "Cuenta creada correctamente."
-
-#: lib/snl_web/controllers/account_controller.ex:59
-msgid "Account deleted successfully."
-msgstr "Cuenta eliminada correctamente."
-
-#: lib/snl_web/controllers/account_controller.ex:47
-msgid "Account updated successfully."
-msgstr "Cuenta actualizada correctamente."
-
-#: lib/snl_web/templates/account/index.html.eex:4
-#: lib/snl_web/templates/layout/_menu.html.eex:23
-msgid "Accounts"
-msgstr "Cuentas"
-
-#: lib/snl_web/templates/account/edit.html.eex:4
-msgid "Edit account"
-msgstr "Editar cuenta"
-
-#: lib/snl_web/templates/account/index.html.eex:37
-#: lib/snl_web/templates/account/new.html.eex:4
-msgid "New account"
-msgstr "Nueva cuenta"
-
-#: lib/snl_web/templates/account/_form.html.eex:17
-#: lib/snl_web/templates/account/index.html.eex:11
-#: lib/snl_web/templates/account/show.html.eex:7
-msgid "Prefix"
-msgstr "Prefijo"

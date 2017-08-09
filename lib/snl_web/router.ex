@@ -21,7 +21,6 @@ defmodule SnlWeb.Router do
 
     get "/", RootController, :index
 
-    resources "/accounts", AccountController
     resources "/sessions", SessionController, only: [:new, :create, :delete],
                                               singleton: true
     resources "/users", UserController
