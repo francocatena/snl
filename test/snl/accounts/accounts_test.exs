@@ -134,10 +134,18 @@ defmodule Snl.AccountsTest do
       assert Accounts.get_account!(account.id) == account
     end
 
-    test "create_account/1 with valid data creates a account" do
+    test "create_account/1 with valid data creates a account without schema" do
+      assert {:ok, %Account{} = account} = Accounts.create_account(@valid_attrs, create_schema: false)
+      assert account.db_prefix == "db_prefix"
+      assert account.name == "some name"
+      refute schema_exists?(account.db_prefix)
+    end
+
+    test "create_account/1 with valid data creates a account with schema" do
       assert {:ok, %Account{} = account} = Accounts.create_account(@valid_attrs)
       assert account.db_prefix == "db_prefix"
       assert account.name == "some name"
+      assert schema_exists?(account.db_prefix)
     end
 
     test "create_account/1 with invalid data returns error changeset" do
@@ -172,5 +180,13 @@ defmodule Snl.AccountsTest do
 
       assert %Ecto.Changeset{} = Accounts.change_account(account)
     end
+  end
+
+  defp schema_exists?(prefix) do
+    query = "SELECT schema_name FROM information_schema.schemata WHERE schema_name = 't_#{prefix}';"
+
+    {:ok, %{num_rows: rows}} = Ecto.Adapters.SQL.query(Repo, query)
+
+    rows == 1
   end
 end

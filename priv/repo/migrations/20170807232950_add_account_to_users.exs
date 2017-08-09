@@ -1,8 +1,8 @@
 defmodule Snl.Repo.Migrations.AddAccountToUsers do
-  use Ecto.Migration
+  use Snl, :migration
 
   def change do
-    if prefix() in [nil, "public"] do
+    unless prefix() do
       alter table(:users) do
         add :account_id, references(:accounts, on_delete: :delete_all), null: false
       end

@@ -1,17 +1,11 @@
 defmodule Snl.Support.FixtureHelper do
   alias Snl.Accounts
 
-  def fixture(type, attributes \\ %{})
+  def fixture(type, attributes \\ %{}, opts \\ [])
 
   @user_attrs %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
 
-  def fixture(:user, attributes) do
-    account = fixture(:account)
-
-    fixture(:user, attributes, account.id)
-  end
-
-  def fixture(:user, attributes, account_id) do
+  def fixture(:user, attributes, account_id) when is_integer(account_id) do
     {:ok, user} =
       attributes
       |> Enum.into(@user_attrs)
@@ -20,13 +14,19 @@ defmodule Snl.Support.FixtureHelper do
     %{user | password: nil}
   end
 
+  def fixture(:user, attributes, _) do
+    account = fixture(:account)
+
+    fixture(:user, attributes, account.id)
+  end
+
   @account_attrs %{name: "fixture name", db_prefix: "fixture_prefix"}
 
-  def fixture(:account, attributes) do
+  def fixture(:account, attributes, opts) do
     {:ok, account} =
       attributes
       |> Enum.into(@account_attrs)
-      |> Accounts.create_account()
+      |> Accounts.create_account(opts)
 
     account
   end

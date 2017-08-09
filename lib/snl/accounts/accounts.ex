@@ -3,9 +3,9 @@ defmodule Snl.Accounts do
   The Accounts context.
   """
 
-  import Ecto.Query, warn: false
-  alias Snl.Repo
+  import Ecto.Query
 
+  alias Snl.Repo
   alias Snl.Accounts.{Auth, User}
 
   @doc """
@@ -163,7 +163,15 @@ defmodule Snl.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_account(attrs \\ %{}) do
+  def create_account(attrs \\ %{}, opts \\ [create_schema: true])
+
+  def create_account(attrs, create_schema: true) do
+    attrs
+    |> create_account(create_schema: false)
+    |> Account.after_create()
+  end
+
+  def create_account(attrs, _) do
     %Account{}
     |> Account.changeset(attrs)
     |> Repo.insert()
@@ -201,6 +209,7 @@ defmodule Snl.Accounts do
   """
   def delete_account(%Account{} = account) do
     Repo.delete(account)
+    |> Account.after_delete()
   end
 
   @doc """
