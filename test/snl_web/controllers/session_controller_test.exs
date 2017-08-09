@@ -22,13 +22,13 @@ defmodule SnlWeb.SessionControllerTest do
       assert html_response(conn, 200) =~ ~r/Login/
     end
 
-    test "redirects when current user", %{conn: conn} do
+    test "redirects when current account", %{conn: conn} do
       conn =
         conn
-        |> assign(:current_user, %Snl.Accounts.User{})
+        |> assign(:current_account, %Snl.Accounts.Account{})
         |> get(session_path(conn, :new))
 
-      assert redirected_to(conn) == user_path(conn, :index)
+      assert redirected_to(conn) == root_path(conn, :index)
     end
   end
 
@@ -39,7 +39,7 @@ defmodule SnlWeb.SessionControllerTest do
 
       assert user.id == get_session(conn, :user_id)
       assert user.account_id == get_session(conn, :account_id)
-      assert redirected_to(conn) == user_path(conn, :index)
+      assert redirected_to(conn) == root_path(conn, :index)
     end
 
     test "renders errors when credentials are invalid", %{conn: conn} do

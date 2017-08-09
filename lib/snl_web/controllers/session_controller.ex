@@ -3,8 +3,9 @@ defmodule SnlWeb.SessionController do
 
   plug :authenticate when action in [:delete]
 
-  def new(%{assigns: %{current_user: user}} = conn, _params) when not is_nil(user) do
-    redirect(conn, to: user_path(conn, :index))
+  def new(%{assigns: %{current_account: account}} = conn, _params)
+  when is_map(account) do
+    redirect(conn, to: root_path(conn, :index))
   end
 
   def new(conn, _params) do
@@ -19,7 +20,7 @@ defmodule SnlWeb.SessionController do
         |> put_session(:user_id, user.id)
         |> put_session(:account_id, user.account_id)
         |> configure_session(renew: true)
-        |> redirect(to: user_path(conn, :index))
+        |> redirect(to: root_path(conn, :index))
       {:error, :unauthorized} ->
         conn
         |> put_flash(:error, gettext("Invalid email/password combination"))
