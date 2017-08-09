@@ -173,7 +173,7 @@ defmodule Snl.Accounts do
 
   def create_account(attrs, _) do
     %Account{}
-    |> Account.changeset(attrs)
+    |> Account.create_changeset(attrs)
     |> Repo.insert()
   end
 

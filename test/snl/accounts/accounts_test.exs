@@ -157,7 +157,7 @@ defmodule Snl.AccountsTest do
 
       assert {:ok, account} = Accounts.update_account(account, @update_attrs)
       assert %Account{} = account
-      assert account.db_prefix == "updated_db_prefix"
+      assert account.db_prefix == "db_prefix" # Ignored on update
       assert account.name == "some updated name"
     end
 

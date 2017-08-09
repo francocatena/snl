@@ -21,13 +21,17 @@ defmodule Snl.Accounts.Account do
   @doc false
   def changeset(%Account{} = account, attrs) do
     account
-    |> cast(attrs, [:name, :db_prefix])
-    |> validate_required([:name, :db_prefix])
-    |> validate_length(:name, max: 255)
-    |> validate_length(:db_prefix, max: 61)
-    |> validate_format(:db_prefix, ~r/^[a-z_][a-z0-9_]*$/)
-    |> unique_constraint(:db_prefix)
+    |> cast(attrs, [:name])
+    |> validation
   end
+
+  @doc false
+  def create_changeset(%Account{} = account, attrs) do
+    account
+    |> cast(attrs, [:name, :db_prefix])
+    |> validation
+  end
+
 
   @doc false
   def after_create({:ok, account}) do
@@ -50,6 +54,15 @@ defmodule Snl.Accounts.Account do
 
   @doc false
   def after_delete(error), do: error
+
+  defp validation(changeset) do
+    changeset
+    |> validate_required([:name, :db_prefix])
+    |> validate_length(:name, max: 255)
+    |> validate_length(:db_prefix, max: 61)
+    |> validate_format(:db_prefix, ~r/^[a-z_][a-z0-9_]*$/)
+    |> unique_constraint(:db_prefix)
+  end
 
   defp create_schema(account) do
     prefix = build_prefix(account)

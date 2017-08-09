@@ -12,14 +12,14 @@ defmodule Snl.Accounts.AccountRepoTest do
     test "converts unique constraint on db prefix to error" do
       account   = fixture(:account, @valid_attrs)
       attrs     = Map.put(@valid_attrs, :db_prefix, account.db_prefix)
-      changeset = Account.changeset(%Account{}, attrs)
+      changeset = Account.create_changeset(%Account{}, attrs)
 
       assert {:error, changeset} = Repo.insert(changeset)
       assert "has already been taken" in errors_on(changeset).db_prefix
     end
 
     test "after create creates schema and migrates" do
-      changeset = Account.changeset(%Account{}, @valid_attrs)
+      changeset = Account.create_changeset(%Account{}, @valid_attrs)
 
       refute schema_exists?(@valid_attrs.db_prefix)
 
